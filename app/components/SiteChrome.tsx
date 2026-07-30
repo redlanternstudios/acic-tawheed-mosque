@@ -8,6 +8,8 @@ export function SiteChrome({
   activeSlug: string;
   children: React.ReactNode;
 }>) {
+  const year = new Date().getFullYear();
+
   return (
     <div className="shell">
       <div className="noise" aria-hidden="true" />
@@ -44,7 +46,11 @@ export function SiteChrome({
           <summary className="menu-btn">Menu</summary>
           <div className="mobile-menu-inner">
             {navItems.map((item) => (
-              <Link key={item.slug} href={item.href} aria-current={activeSlug === item.slug ? "page" : undefined}>
+              <Link
+                key={item.slug}
+                href={item.href}
+                aria-current={activeSlug === item.slug ? "page" : undefined}
+              >
                 {item.label}
               </Link>
             ))}
@@ -66,7 +72,7 @@ export function SiteChrome({
           <p>Rooted in Afghan heritage and open to the entire Ummah.</p>
           <p>Open daily with prayer, learning, family, and community support.</p>
         </div>
-        <p>Copyright (c) <span data-year /></p>
+        <p>Copyright (c) {year}</p>
       </footer>
     </div>
   );
