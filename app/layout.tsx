@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Afghan Community Islamic Center | Tawheed Mosque",
+  title: "ACIC | Tawheed Mosque",
   description:
-    "Rooted in Afghan heritage and open to the entire Ummah. Prayer, learning, family, and community in San Diego.",
+    "Afghan Community Islamic Center in San Diego with prayer, learning, family, events, and support.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
