@@ -63,22 +63,29 @@ function getSnapshot(now: Date): PrayerSnapshot {
     previousPrayer = nextIndex === 0 ? schedule[schedule.length - 1] : schedule[nextIndex - 1];
   }
 
-  const countdown = nextPrayer.date.getTime() - now.getTime();
+  const safeNextPrayer = nextPrayer;
+  const safePreviousPrayer = previousPrayer ?? schedule[schedule.length - 1];
+  const countdown = safeNextPrayer.date.getTime() - now.getTime();
   const progress = Math.min(
     100,
-    Math.max(0, ((now.getTime() - previousPrayer.date.getTime()) / (nextPrayer.date.getTime() - previousPrayer.date.getTime())) * 100),
+    Math.max(
+      0,
+      ((now.getTime() - safePreviousPrayer.date.getTime()) /
+        (safeNextPrayer.date.getTime() - safePreviousPrayer.date.getTime())) *
+        100,
+    ),
   );
 
   return {
     nowLabel: formatTime(now),
     countdown: formatCountdown(countdown),
-    nextName: nextPrayer.name,
-    nextTime: formatTime(nextPrayer.date),
-    status: currentPrayer ? `Current: ${currentPrayer.name}` : `Next up: ${nextPrayer.name}`,
+    nextName: safeNextPrayer.name,
+    nextTime: formatTime(safeNextPrayer.date),
+    status: currentPrayer ? `Current: ${currentPrayer.name}` : `Next up: ${safeNextPrayer.name}`,
     progress: `${progress}%`,
     rows: prayerSchedule.map((item) => ({
       ...item,
-      active: item.name === nextPrayer.name || item.name === currentPrayer?.name,
+      active: item.name === safeNextPrayer.name || item.name === currentPrayer?.name,
     })),
   };
 }
