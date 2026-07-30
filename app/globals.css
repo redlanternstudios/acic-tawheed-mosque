@@ -122,7 +122,7 @@ button, input, textarea, select { font: inherit; }
 .nav {
   margin-left: auto;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(8, minmax(0, 1fr));
   gap: 8px;
   align-items: center;
   flex: 1 1 auto;
@@ -720,7 +720,7 @@ button, input, textarea, select { font: inherit; }
   }
 
   .nav {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(8, minmax(0, 1fr));
   }
 
   .hero-strip,
