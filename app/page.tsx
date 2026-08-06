@@ -1,136 +1,34 @@
 import Link from "next/link";
+import { ArrowRight, BookOpen, CalendarDays, HeartHandshake, MapPin, MessageCircleQuestion, UsersRound } from "lucide-react";
 import { PrayerClock } from "./components/PrayerClock";
 import { SiteChrome } from "./components/SiteChrome";
-import { homeScreens } from "./site-content";
 
-const pillars = [
-  { title: "1994", body: "Community founded with a shared purpose." },
-  { title: "2008", body: "Permanent San Diego home." },
-  { title: "Family first", body: "Children, parents, and elders all belong here." },
-  { title: "Easy to use", body: "Prayer, events, classes, and support stay visible." },
+const explore = [
+  ["Visit Guide", "Plan a comfortable first visit.", MapPin, "/visit"],
+  ["Classes & Learning", "Grow at every stage.", BookOpen, "/learn"],
+  ["Events", "Stay close to the community.", CalendarDays, "/events"],
+  ["Children & Families", "A home for every generation.", UsersRound, "/community"],
+  ["Support", "Find a human path to help.", HeartHandshake, "/community/support"],
+  ["Donate", "Give with purpose.", HeartHandshake, "/donate"],
+  ["Media", "Watch, learn, and stay connected.", BookOpen, "/media"],
+  ["Leadership", "Meet the people serving.", UsersRound, "/about"],
 ];
 
 export default function HomePage() {
-  return (
-    <SiteChrome activeSlug="home">
-      <main className="page page-home">
-        <section className="hero hero-home">
-          <div className="hero-copy">
-            <span className="eyebrow">Serving San Diego with Afghan hospitality</span>
-            <h1>A masjid where your family can grow.</h1>
-            <p className="lead">
-              Rooted in Afghan heritage and open to the entire Ummah, ACIC is built to feel calm,
-              easy to navigate, and welcoming from the first tap.
-            </p>
-            <div className="hero-actions">
-              <Link className="button primary" href="/prayer">
-                View prayer
-              </Link>
-              <Link className="button secondary" href="/classes">
-                Explore classes
-              </Link>
-              <Link className="button secondary" href="/contact">
-                Visit us
-              </Link>
-            </div>
-          </div>
-          <div className="hero-aside">
-            <PrayerClock compact />
-          </div>
-        </section>
+  return <SiteChrome activeSlug="home"><main className="page page-home">
+    <section className="hero hero-home">
+      <div className="hero-copy"><span className="eyebrow">A home for prayer, family, and community</span><h1>A masjid where your family can grow.</h1><p className="lead">Rooted in Afghan heritage and open to the entire Ummah, ACIC Tawheed Mosque welcomes you with warmth, clarity, and a place to belong.</p><div className="hero-actions"><Link className="button primary" href="/visit">Plan your visit</Link><Link className="button secondary" href="/prayer">View prayer times</Link></div></div>
+      <div className="hero-art" role="img" aria-label="A quiet architectural welcome for ACIC Tawheed Mosque"><span className="hero-art-label">A welcoming place to return to.</span></div>
+    </section>
 
-        <section className="hero-strip">
-          {pillars.map((pillar) => (
-            <article className="tile" key={pillar.title}>
-              <div className="kicker">{pillar.title}</div>
-              <strong>{pillar.body}</strong>
-            </article>
-          ))}
-        </section>
+    <section className="section" style={{ paddingTop: 18 }}><div className="section-head"><div><span className="eyebrow">Today at ACIC</span><h2>Make room for what matters.</h2></div><p>Prayer, learning, and the small moments that bring a community together.</p></div><div className="split"><PrayerClock compact /><div className="panel"><span className="kicker">Next at the masjid</span><h3>Open Masjid Learning</h3><p>Come by for questions, reading, and direct access to teachers. Beginners and returning learners are welcome.</p><div className="hero-actions"><Link className="button primary" href="/learn">Explore learning</Link><Link className="button secondary" href="/events">See what&apos;s happening</Link></div></div></div></section>
 
-        <section className="section">
-          <div className="section-head">
-            <div>
-              <span className="eyebrow">Why this feels different</span>
-              <h2>Built like a real site, not a landing page.</h2>
-              <p>
-                Every major action has its own route so people can get what they need without
-                hunting through one long scroll.
-              </p>
-            </div>
-          </div>
-          <div className="grid-3">
-            <article className="feature-card">
-              <h3>Prayer</h3>
-              <p>Daily prayer information, visitor guidance, and the etiquette first-time guests need.</p>
-              <div className="feature-meta">
-                <span><span className="dot" /> Live prayer board slot</span>
-                <span><span className="dot" /> Directions and parking</span>
-                <span><span className="dot" /> Visitor-friendly guidance</span>
-              </div>
-            </article>
-            <article className="feature-card">
-              <h3>Classes</h3>
-              <p>Arabic, Farsi, Quran, and family learning organized in one place.</p>
-              <div className="feature-meta">
-                <span><span className="dot" /> Weeknight learning</span>
-                <span><span className="dot" /> Youth and beginner friendly</span>
-                <span><span className="dot" /> Revert welcome</span>
-              </div>
-            </article>
-            <article className="feature-card">
-              <h3>Resources</h3>
-              <p>Quran links, books, marriage help, prayer notes, and forms get a proper library feel.</p>
-              <div className="feature-meta">
-                <span><span className="dot" /> Resource center layout</span>
-                <span><span className="dot" /> Clear categories</span>
-                <span><span className="dot" /> Easy mobile access</span>
-              </div>
-            </article>
-          </div>
-        </section>
+    <section className="section" style={{ paddingTop: 24 }}><div className="section-head"><div><span className="eyebrow">Explore ACIC</span><h2>Find your place.</h2></div><p>One clear next step for every member, family, visitor, and neighbor.</p></div><div className="grid-3">{explore.map(([title, body, Icon, href]) => { const ItemIcon = Icon as typeof MapPin; return <Link className="feature-card" href={href as string} key={title as string}><ItemIcon aria-hidden="true" /><h3>{title as string}</h3><p>{body as string}</p><ArrowRight aria-hidden="true" /></Link>; })}</div></section>
 
-        <section className="section split">
-          <div className="quote">
-            <strong>What the site should feel like</strong>
-            <p>
-              Warm, reverent, family-centered, and calm. Afghan hospitality, Islamic geometry, and
-              Apple-level clarity should all show up at once.
-            </p>
-          </div>
-          <div className="panel">
-            <h3>At a glance</h3>
-            <div className="mini-list">
-              <span><span className="dot" /> Established in 1994</span>
-              <span><span className="dot" /> Permanent location since 2008</span>
-              <span><span className="dot" /> Open to the entire Ummah</span>
-              <span><span className="dot" /> Children, elders, and visitors welcome</span>
-            </div>
-          </div>
-        </section>
+    <section className="section split"><div><span className="eyebrow">First time here?</span><h2>You are welcome before you know what to do.</h2><p>No one should have to know mosque etiquette before they arrive. Come as you are, ask a question, observe, or stay for prayer.</p><Link className="button primary" href="/visit">What to expect <ArrowRight data-icon="inline-end" /></Link></div><div className="quote"><strong>“A place for every generation.”</strong><p>Children, parents, elders, and visitors all have a place in the rhythm of the masjid.</p></div></section>
 
-        <section className="section">
-          <div className="section-head">
-            <div>
-              <span className="eyebrow">More screens in the system</span>
-              <h2>These pages give the site room to breathe.</h2>
-              <p>
-                The homepage should act like a gateway into the rest of the experience, not the
-                whole experience.
-              </p>
-            </div>
-          </div>
-          <div className="screen-grid">
-            {homeScreens.map((screen) => (
-              <Link className="screen-card" href={screen.href} key={screen.title}>
-                <h3>{screen.title}</h3>
-                <p>{screen.body}</p>
-                <div className="small">Open the screen</div>
-              </Link>
-            ))}
-          </div>
-        </section>
-      </main>
-    </SiteChrome>
-  );
+    <section className="section"><div className="section-head"><div><span className="eyebrow">Learning for every age</span><h2>Every step of learning belongs here.</h2></div><p>Start small, keep it clear, and make the next lesson obvious.</p></div><div className="grid-3"><article className="feature-card"><BookOpen aria-hidden="true" /><h3>Quran & Arabic</h3><p>Connect with the Quran, Arabic, and lifelong learning.</p><Link className="small" href="/learn">Learn more <ArrowRight data-icon="inline-end" /></Link></article><article className="feature-card"><UsersRound aria-hidden="true" /><h3>Children & Families</h3><p>Programs and support for parents to help children grow together.</p><Link className="small" href="/community">Find family space <ArrowRight data-icon="inline-end" /></Link></article><article className="feature-card"><MessageCircleQuestion aria-hidden="true" /><h3>Ask the Mosque</h3><p>Have a question? We will help route you to the right person.</p><Link className="small" href="/contact">Ask a question <ArrowRight data-icon="inline-end" /></Link></article></div></section>
+
+    <section className="section" style={{ paddingTop: 24 }}><div className="quote"><span className="eyebrow">Support your masjid</span><strong>Every contribution builds a stronger community.</strong><p>Give with purpose and help keep a welcoming home for prayer, learning, and family.</p><Link className="button primary" href="/donate">Support ACIC</Link></div></section>
+  </main></SiteChrome>;
 }
