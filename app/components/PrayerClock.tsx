@@ -91,9 +91,11 @@ function getSnapshot(now: Date): PrayerSnapshot {
 }
 
 export function PrayerClock({ compact = false }: Readonly<{ compact?: boolean }>) {
-  const [now, setNow] = useState(() => new Date());
+  // Use a stable server/client seed, then start the live clock after hydration.
+  const [now, setNow] = useState(() => new Date(0));
 
   useEffect(() => {
+    setNow(new Date());
     const timer = window.setInterval(() => setNow(new Date()), 1000);
     return () => window.clearInterval(timer);
   }, []);
