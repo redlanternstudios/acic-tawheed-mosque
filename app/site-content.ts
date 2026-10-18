@@ -33,13 +33,13 @@ export type PageContent = {
 
 export const navItems: NavItem[] = [
   { href: "/", label: "Home", slug: "home" },
-  { href: "/about", label: "About", slug: "about" },
+  { href: "/visit", label: "Visit", slug: "visit" },
   { href: "/prayer", label: "Prayer", slug: "prayer" },
-  { href: "/events", label: "Events", slug: "events" },
-  { href: "/classes", label: "Classes", slug: "classes" },
-  { href: "/resources", label: "Resources", slug: "resources" },
-  { href: "/gallery", label: "Gallery", slug: "gallery" },
+  { href: "/learn", label: "Learn", slug: "learn" },
+  { href: "/about", label: "Leadership", slug: "about" },
+  { href: "/media", label: "Media", slug: "media" },
   { href: "/contact", label: "Contact", slug: "contact" },
+  { href: "/donate", label: "Donate", slug: "donate" },
 ];
 
 export const prayerSchedule = [
