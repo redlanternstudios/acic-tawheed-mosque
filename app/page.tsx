@@ -17,22 +17,12 @@ const explore = [
 export default function HomePage() {
   return <SiteChrome activeSlug="home"><main className="page page-home">
     <section className="hero hero-home">
+      <video className="hero-video" autoPlay muted loop playsInline preload="auto" aria-label="Video of ACIC Tawheed Mosque">
+        <source src="/media/live-mosque.mp4" type="video/mp4" />
+      </video>
+      <div className="hero-video-overlay" aria-hidden="true" />
       <div className="hero-copy"><span className="eyebrow">A home for prayer, family, and community</span><h1>A masjid where your family can grow.</h1><p className="lead">Rooted in Afghan heritage and open to the entire Ummah, ACIC Tawheed Mosque welcomes you with warmth, clarity, and a place to belong.</p><div className="hero-actions"><Link className="button primary" href="/visit">Plan your visit</Link><Link className="button secondary" href="/prayer">View prayer times</Link></div></div>
-      <div className="hero-art"><img src="/media/mosque-hero.png" alt="Warm mosque interior with arched architecture and soft morning light" /><span className="hero-art-label">A welcoming place to return to.</span></div>
-    </section>
-
-    <section className="section live-video-section" aria-labelledby="live-video-heading">
-      <div className="section-head">
-        <div><span className="eyebrow">Watch ACIC</span><h2 id="live-video-heading">Live from the masjid.</h2></div>
-        <p>Stay connected to prayer, learning, and community wherever you are.</p>
-      </div>
-      <div className="live-video-frame">
-        <video className="live-video" controls autoPlay muted loop playsInline preload="metadata" aria-label="Live video from ACIC Tawheed Mosque">
-          <source src="/media/live-mosque.mp4" type="video/mp4" />
-          Your browser does not support the video element.
-        </video>
-        <div className="live-video-badge"><span aria-hidden="true" /> Live video</div>
-      </div>
+      <div className="hero-live-badge"><span aria-hidden="true" /> Live from the masjid</div>
     </section>
 
     <section className="section" style={{ paddingTop: 18 }}><div className="section-head"><div><span className="eyebrow">Today at ACIC</span><h2>Make room for what matters.</h2></div><p>Prayer, learning, and the small moments that bring a community together.</p></div><div className="split"><PrayerClock compact /><div className="panel"><span className="kicker">Next at the masjid</span><h3>Open Masjid Learning</h3><p>Come by for questions, reading, and direct access to teachers. Beginners and returning learners are welcome.</p><div className="hero-actions"><Link className="button primary" href="/learn">Explore learning</Link><Link className="button secondary" href="/events">See what&apos;s happening</Link></div></div></div></section>
