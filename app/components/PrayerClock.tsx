@@ -91,14 +91,29 @@ function getSnapshot(now: Date): PrayerSnapshot {
 }
 
 export function PrayerClock({ compact = false }: Readonly<{ compact?: boolean }>) {
-  const [now, setNow] = useState(() => new Date());
+  const [now, setNow] = useState<Date | null>(null);
 
   useEffect(() => {
+    setNow(new Date());
     const timer = window.setInterval(() => setNow(new Date()), 1000);
     return () => window.clearInterval(timer);
   }, []);
 
-  const snapshot = useMemo(() => getSnapshot(now), [now]);
+  const snapshot = useMemo<PrayerSnapshot>(() => {
+    if (!now) {
+      return {
+        nowLabel: "--:--",
+        countdown: "--:--:--",
+        nextName: prayerSchedule[0].name,
+        nextTime: prayerSchedule[0].time,
+        status: `Next up: ${prayerSchedule[0].name}`,
+        progress: "0%",
+        rows: prayerSchedule.map((item) => ({ ...item, active: item.name === prayerSchedule[0].name })),
+      };
+    }
+
+    return getSnapshot(now);
+  }, [now]);
 
   return (
     <section className={compact ? "prayer-card prayer-card-compact" : "prayer-card"} aria-label="Live prayer clock">

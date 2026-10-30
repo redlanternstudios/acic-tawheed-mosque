@@ -7,14 +7,15 @@ export function generateStaticParams() {
   return Object.keys(routePages).map((slug) => ({ slug }));
 }
 
-export default function DynamicPage({ params }: Readonly<{ params: { slug: string } }>) {
-  const content = routePages[params.slug];
+export default async function DynamicPage({ params }: Readonly<{ params: Promise<{ slug: string }> }>) {
+  const { slug } = await params;
+  const content = routePages[slug];
 
   if (!content) {
     notFound();
   }
 
-  if (params.slug === "login") {
+  if (slug === "login") {
     return (
       <SiteChrome activeSlug="login">
         <main className="page login-page">
@@ -90,5 +91,5 @@ export default function DynamicPage({ params }: Readonly<{ params: { slug: strin
     );
   }
 
-  return <PageLayout activeSlug={params.slug} content={content} />;
+  return <PageLayout activeSlug={slug} content={content} />;
 }
